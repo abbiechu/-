@@ -307,19 +307,19 @@
 
         <div class="node" data-pos="lt" data-info="推廣 SDG12 理念，透過數據分析減少資源浪費，從源頭守護地球環境。">
             <div class="node-text">
-                <span class="icon">🌐</span>
+                <span class="icon">🌲</span>
                 <h4>核心背景</h4>
             </div>
         </div>
         <div class="node" data-pos="lm" data-info="塑膠污染與食物浪費嚴重影響未來，我們致力於喚起大眾對消費習慣的警覺。">
             <div class="node-text">
-                <span class="icon">⚠️</span>
+                <span class="icon">❗</span>
                 <h4>問題意識</h4>
             </div>
         </div>
         <div class="node" data-pos="lb" data-info="將永續融入日常，讓每個人都能看到自己小行為對環境產生的巨大正面改變。">
             <div class="node-text">
-                <span class="icon">🎯</span>
+                <span class="icon">⛳</span>
                 <h4>團隊目標</h4>
             </div>
         </div>
@@ -347,8 +347,8 @@
 
 <style>
     #about-mindmap {
-        padding: 50px 0;
-        background-color: #F4F1DE; /* 象牙米背景 */
+        padding: 60px 0;
+        background-color: #F4F1DE; 
         overflow: hidden;
         position: relative;
     }
@@ -363,40 +363,40 @@
         width: 1000px;
         height: 580px;
         margin: 0 auto;
+        /* 使用 flex 輔助中間節點置中 */
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    /* 中心核心 - 深綠色 */
+    /* 中心核心 */
     .center-core {
         background: #4A7C59;
         color: white;
-        padding: 35px 55px;
+        padding: 35px 60px;
         border-radius: 60px;
         text-align: center;
         z-index: 100;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         border: 4px solid #fff;
     }
-    .center-core h3 { font-size: 2.2rem; margin: 0; letter-spacing: 1px; }
+    .center-core h3 { font-size: 2.3rem; margin: 0; letter-spacing: 1px; }
 
-    /* 放大後的圓形節點 */
+    /* 節點通用樣式 */
     .node {
         position: absolute;
-        width: 155px; 
-        height: 105px;
+        width: 160px; 
+        height: 110px;
         background: white;
         border: 2.5px solid #4A7C59;
-        border-radius: 30px;
+        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         z-index: 50;
+        /* 移除 transform 衝突，統一使用 scale */
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-        
-        /* 延伸動畫：從中心彈出 */
         animation: growOut 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         opacity: 0;
     }
@@ -408,22 +408,21 @@
         align-items: center;
     }
 
-    /* 綠色表情符號 */
-    .icon { font-size: 1.6rem; margin-bottom: 5px; filter: sepia(100%) hue-rotate(60deg) saturate(150%); }
-    .node h4 { margin: 0; color: #4A7C59; font-size: 1.2rem; font-weight: bold; }
+    .icon { font-size: 1.8rem; margin-bottom: 5px; color: #4A7C59; }
+    .node h4 { margin: 0; color: #4A7C59; font-size: 1.25rem; font-weight: bold; }
 
+    /* 滑鼠移過僅放大，不位移 */
     .node:hover { 
         transform: scale(1.1) !important; 
-        box-shadow: 0 12px 25px rgba(74, 124, 89, 0.2);
-        border-color: #386145;
+        box-shadow: 0 12px 25px rgba(74, 124, 89, 0.15);
     }
 
     @keyframes growOut {
-        0% { transform: scale(0) translate(0, 0); opacity: 0; }
-        100% { opacity: 1; }
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
     }
 
-    /* 詳細資訊浮窗 (確保在視窗內) */
+    /* 詳細資訊彈出窗 */
     .detail-pop {
         position: absolute;
         background: white;
@@ -431,7 +430,7 @@
         padding: 18px;
         width: 260px;
         border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         z-index: 200;
         font-size: 1.05rem;
         color: #333;
@@ -439,35 +438,85 @@
         pointer-events: none;
     }
 
-    /* 座標定位：向中心聚集 */
-    .node[data-pos="lt"] { top: 12%; left: 24%; }
-    .node[data-pos="lm"] { top: 48%; left: 14%; transform: translateY(-50%); }
-    .node[data-pos="lb"] { bottom: 12%; left: 24%; }
+    /* 座標定位：修正 lm/rm 的定位方式以避免動畫衝突 */
+    .node[data-pos="lt"] { top: 10%; left: 25%; }
+    .node[data-pos="lm"] { top: calc(50% - 55px); left: 15%; } /* 使用 calc 確保置中且不衝突 */
+    .node[data-pos="lb"] { bottom: 10%; left: 25%; }
     
-    .node[data-pos="rt"] { top: 12%; right: 24%; }
-    .node[data-pos="rm"] { top: 48%; right: 14%; transform: translateY(-50%); }
-    .node[data-pos="rb"] { bottom: 12%; right: 24%; }
+    .node[data-pos="rt"] { top: 10%; right: 25%; }
+    .node[data-pos="rm"] { top: calc(50% - 55px); right: 15%; } /* 55px 是節點高度的一半 */
+    .node[data-pos="rb"] { bottom: 10%; right: 25%; }
 
-    /* 背景連線 */
+    /* 連線圖層 */
     .map-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
     .map-line { 
         stroke: #4A7C59; 
-        stroke-width: 2.5; 
-        opacity: 0.25; 
+        stroke-width: 2.2; 
+        opacity: 0.2; 
         fill: none;
         stroke-dasharray: 1000;
         stroke-dashoffset: 1000;
-        animation: drawLine 1.2s ease-out 0.4s forwards;
+        animation: drawLine 1.2s ease-out 0.5s forwards;
     }
 
     @keyframes drawLine { to { stroke-dashoffset: 0; } }
-
-    @media (max-width: 1024px) {
-        .map-container { width: 100%; height: auto; flex-direction: column; }
-        .node { position: static; margin: 15px 0; width: 85%; opacity: 1; animation: none; }
-        .map-svg, .center-core { display: none; }
-    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.map-container');
+        const nodes = document.querySelectorAll('.node');
+        const linesGroup = document.querySelector('.lines-group');
+        const center = document.querySelector('.center-core');
+
+        function drawLines() {
+            linesGroup.innerHTML = '';
+            const containerRect = container.getBoundingClientRect();
+            const cRect = center.getBoundingClientRect();
+            const cx = cRect.left + cRect.width / 2 - containerRect.left;
+            const cy = cRect.top + cRect.height / 2 - containerRect.top;
+
+            nodes.forEach(node => {
+                const nRect = node.getBoundingClientRect();
+                const nx = nRect.left + nRect.width / 2 - containerRect.left;
+                const ny = nRect.top + nRect.height / 2 - containerRect.top;
+
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("x1", cx); line.setAttribute("y1", cy);
+                line.setAttribute("x2", nx); line.setAttribute("y2", ny);
+                line.setAttribute("class", "map-line");
+                linesGroup.appendChild(line);
+            });
+        }
+
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                const info = node.getAttribute('data-info');
+                const pos = node.getAttribute('data-pos');
+                const detail = document.createElement('div');
+                detail.className = 'detail-pop';
+                detail.innerHTML = `<p>${info}</p>`;
+                document.body.appendChild(detail);
+
+                const rect = node.getBoundingClientRect();
+                if (pos.includes('l')) {
+                    detail.style.left = (rect.left - 280) + 'px';
+                } else {
+                    detail.style.left = (rect.right + 20) + 'px';
+                }
+                detail.style.top = (rect.top - 10) + 'px';
+                node._detail = detail;
+            });
+
+            node.addEventListener('mouseleave', () => {
+                if (node._detail) { node._detail.remove(); node._detail = null; }
+            });
+        });
+
+        window.addEventListener('resize', drawLines);
+        setTimeout(drawLines, 1000); 
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
