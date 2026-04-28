@@ -355,12 +355,12 @@
     <h2 class="section-title">關於我們</h2>
     <div class="mindmap-container">
         <svg class="mindmap-lines">
-            <line class="line" x1="50%" y1="50%" x2="22%" y2="15%" />
-            <line class="line" x1="50%" y1="50%" x2="12%" y2="50%" />
-            <line class="line" x1="50%" y1="50%" x2="22%" y2="85%" />
-            <line class="line" x1="50%" y1="50%" x2="78%" y2="15%" />
-            <line class="line" x1="50%" y1="50%" x2="88%" y2="50%" />
-            <line class="line" x1="50%" y1="50%" x2="78%" y2="85%" />
+            <line class="line" x1="50%" y1="50%" x2="25%" y2="15%" />
+            <line class="line" x1="50%" y1="50%" x2="15%" y2="50%" />
+            <line class="line" x1="50%" y1="50%" x2="25%" y2="85%" />
+            <line class="line" x1="50%" y1="50%" x2="75%" y2="15%" />
+            <line class="line" x1="50%" y1="50%" x2="85%" y2="50%" />
+            <line class="line" x1="50%" y1="50%" x2="75%" y2="85%" />
         </svg>
 
         <div class="mindmap-center">
@@ -371,54 +371,53 @@
 
         <div class="mindmap-node node-bg left-side animated-branch">
             <div class="node-content"><h4>🌍 核心背景</h4></div>
-            <div class="node-detail"><p>推廣 SDG12 理念，透過教育與數據減少資源浪費，從源頭守護地球環境。</p></div>
+            <div class="node-detail"><p>推廣 SDG12 理念，透過數據分析減少資源浪費，從源頭守護地球環境。</p></div>
         </div>
         
         <div class="mindmap-node node-issues left-side animated-branch">
             <div class="node-content"><h4>⚠️ 問題意識</h4></div>
-            <div class="node-detail"><p>塑膠污染與食物浪費正嚴重影響未來。我們希望喚起大眾對日常消費習慣的警覺心。</p></div>
+            <div class="node-detail"><p>塑膠污染與食物浪費嚴重影響未來，我們致力於喚起大眾對消費習慣的警覺。</p></div>
         </div>
         
         <div class="mindmap-node node-goal left-side animated-branch">
             <div class="node-content"><h4>🎯 團隊目標</h4></div>
-            <div class="node-detail"><p>將永續融入日常行為，讓每個人都能看到自己小小的行為對環境產生的巨大正面改變。</p></div>
+            <div class="node-detail"><p>將永續融入日常，讓每個人都能看到自己小行為對環境產生的巨大正面改變。</p></div>
         </div>
 
         <div class="mindmap-node node-features right-side animated-branch">
             <div class="node-content"><h4>💡 網站特色</h4></div>
-            <div class="node-detail"><p>提供環保雷達圖分析與個人化建議。結合趣味互動卡片，讓減碳行動變得好玩又簡單。</p></div>
+            <div class="node-detail"><p>提供環保雷達圖與個人化建議，結合互動任務讓減碳行動變得好玩又簡單。</p></div>
         </div>
         
         <div class="mindmap-node node-value right-side animated-branch">
             <div class="node-content"><h4>🌱 核心價值</h4></div>
-            <div class="node-detail"><p>Small Actions, Big Impact. 永續從消費開始，透過聰明選擇創造更美好的明天。</p></div>
+            <div class="node-detail"><p>Small Actions, Big Impact. 永續從消費開始，聰明選擇創造美好明天。</p></div>
         </div>
         
         <div class="mindmap-node node-concept right-side animated-branch">
             <div class="node-content"><h4>🌿 我們的理念</h4></div>
-            <div class="node-detail"><p>將複雜條文轉化為真實體驗。不只是資訊傳遞，更要讓環保成為觸手可及的日常行動。</p></div>
+            <div class="node-detail"><p>將複雜條文轉化為真實體驗，讓環保成為每個人在生活中觸手可及的行動。</p></div>
         </div>
     </div>
 </section>
 
 <style>
-    /* 縮小間距，讓標題跟圖靠攏 */
+    /* 1. 解決間距過大問題 */
     #about { 
-        padding: 40px 0 80px 0; /* 大幅縮小上邊距 */
+        padding: 20px 0 60px 0; /* 縮小上下邊距 */
         background-color: #F4F1DE;
-        overflow: visible;
     }
     .section-title { 
-        margin-bottom: 10px !important; /* 讓標題離心智圖更近 */
-        font-size: 2.2rem;
-        text-align: center;
+        margin-top: 0;
+        margin-bottom: 20px !important; 
         color: #4A7C59;
+        font-size: 2rem;
     }
 
     .mindmap-container {
         position: relative;
-        max-width: 1200px;
-        height: 550px;
+        max-width: 1100px;
+        height: 500px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -428,90 +427,91 @@
     .center-node {
         background: #4A7C59;
         color: white;
-        padding: 22px 40px;
+        padding: 20px 40px;
         border-radius: 50px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         z-index: 100;
+        border: 3px solid white;
     }
 
+    /* 2. 節點與標題框樣式 */
     .mindmap-node {
         position: absolute;
         display: flex;
         align-items: center;
         z-index: 50;
+    }
+
+    .node-content {
+        background: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border: 2px solid #8FB996;
+        cursor: pointer;
+        z-index: 70;
+        white-space: nowrap;
         transition: transform 0.3s ease;
     }
 
-    /* 標題小框樣式 */
-    .node-content {
-        background: white;
-        padding: 10px 18px;
-        border-radius: 25px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        border: 2px solid #8FB996;
-        white-space: nowrap;
-        cursor: pointer;
-        z-index: 60;
-    }
-
-    /* 懸停標題統一向上浮動 */
     .mindmap-node:hover .node-content {
-        transform: translateY(-8px);
+        transform: translateY(-5px); /* 統一向上浮動 */
         border-color: #4A7C59;
     }
 
-    /* 詳細說明：只做橫向展開動畫 */
+    /* 3. 解決文字凸出與佈局亂跳：使用 Absolute 側邊展開 */
     .node-detail {
-        background: white;
+        position: absolute;
         width: 0;
-        height: 80px; /* 固定高度防止先變長再變橫 */
-        display: flex;
-        align-items: center;
+        background: white;
         padding: 0;
         border-radius: 12px;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         opacity: 0;
         overflow: hidden;
-        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+        transition: width 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
         pointer-events: none;
-        z-index: 55;
+        z-index: 60;
+        display: flex;
+        align-items: center;
     }
 
-    /* 修正展開位置 */
-    .left-side .node-detail { margin-right: 12px; border-right: 4px solid #4A7C59; flex-direction: row-reverse; }
-    .right-side .node-detail { margin-left: 12px; border-left: 4px solid #4A7C59; }
+    /* 左側節點：說明框在標題左邊 */
+    .left-side .node-detail { right: 105%; border-right: 5px solid #4A7C59; }
+    /* 右側節點：說明框在標題右邊 */
+    .right-side .node-detail { left: 105%; border-left: 5px solid #4A7C59; }
 
     .mindmap-node:hover .node-detail {
-        width: 240px; /* 橫向展開寬度 */
-        padding: 0 15px;
+        width: 220px;
+        padding: 15px;
         opacity: 1;
     }
 
     .node-detail p {
-        min-width: 210px; /* 確保文字有固定寬度，不會因為寬度動畫而擠壓 */
+        margin: 0;
         font-size: 0.9rem;
         line-height: 1.5;
         color: #333;
-        word-break: break-all;
+        min-width: 190px; /* 防止寬度動畫時文字擠壓變形 */
     }
 
-    /* 各節點座標位置 */
-    .node-bg { top: 10%; left: 18%; flex-direction: row-reverse; }
-    .node-issues { top: 50%; left: 8%; transform: translateY(-50%); flex-direction: row-reverse; }
-    .node-goal { bottom: 10%; left: 18%; flex-direction: row-reverse; }
+    /* 4. 精確位置分配 (不再重疊) */
+    .node-bg { top: 5%; left: 15%; }
+    .node-issues { top: 50%; left: 5%; transform: translateY(-50%); }
+    .node-goal { bottom: 5%; left: 15%; }
     
-    .node-features { top: 10%; right: 18%; }
-    .node-value { top: 50%; right: 8%; transform: translateY(-50%); }
-    .node-concept { bottom: 10%; right: 18%; }
+    .node-features { top: 5%; right: 15%; }
+    .node-value { top: 50%; right: 5%; transform: translateY(-50%); }
+    .node-concept { bottom: 5%; right: 15%; }
 
-    /* SVG 連線 */
+    /* 連線動畫 */
     .line { stroke: #8FB996; stroke-width: 2; opacity: 0.4; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
-    .line.animated { animation: drawLine 1.2s forwards; }
+    .line.animated { animation: drawLine 1s forwards; }
     @keyframes drawLine { to { stroke-dashoffset: 0; } }
 
-    /* 發散進場動畫 */
+    /* 進場動畫 */
     .animated-branch { opacity: 0; transform: scale(0.8); }
-    .animated-branch.active { animation: popIn 0.6s forwards; }
+    .animated-branch.active { animation: popIn 0.5s forwards; }
     @keyframes popIn { to { opacity: 1; transform: scale(1); } }
 </style>
 
