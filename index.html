@@ -369,54 +369,62 @@
             </div>
         </div>
 
-        <div class="mindmap-node node-bg animated-branch" ondblclick="showDetail('核心背景', '因應現代過度消費問題，全球每年產生數十億噸廢棄物。我們致力於推廣聯合國 SDG12 責任消費與生產理念，透過數據分析與行為引導，減少不必要的資源浪費，從源頭守護地球。')">
-            <i class="fas fa-globe-asia"></i>
-            <h4>🌍 核心背景</h4>
+        <div class="mindmap-node node-bg animated-branch left-side">
+            <div class="node-content">
+                <i class="fas fa-globe-asia"></i>
+                <h4>核心背景</h4>
+            </div>
+            <div class="node-detail">因應現代過度消費，我們推廣 SDG12 理念，透過教育與數據減少資源浪費，從源頭守護地球。</div>
         </div>
         
-        <div class="mindmap-node node-issues animated-branch" ondblclick="showDetail('問題意識', '當前社會面臨嚴峻的塑膠污染、食物浪費及資源過度耗損。這些行為正快速消耗地球資本，影響未來世代的生存環境。我們希望喚起大眾對於「隱形浪費」的警覺心。')">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h4>⚠️ 問題意識</h4>
+        <div class="mindmap-node node-issues animated-branch left-side">
+            <div class="node-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>問題意識</h4>
+            </div>
+            <div class="node-detail">塑膠污染、食物浪費及資源耗損正嚴重影響未來。我們希望喚起大眾對日常消費習慣的警覺。</div>
         </div>
         
-        <div class="mindmap-node node-goal animated-branch" ondblclick="showDetail('團隊目標', '我們的目標是提升全體公民的環保意識，將永續經營的概念轉化為簡單易懂的日常行為。透過科技工具，讓每個人都能看到自己行為對環境產生的正面影響力。')">
-            <i class="fas fa-bullseye"></i>
-            <h4>🎯 團隊目標</h4>
+        <div class="mindmap-node node-goal animated-branch left-side">
+            <div class="node-content">
+                <i class="fas fa-bullseye"></i>
+                <h4>團隊目標</h4>
+            </div>
+            <div class="node-detail">提升大眾環保意識，將永續融入日常。讓每個人都能看到自己行為對環境產生的正面改變。</div>
         </div>
 
-        <div class="mindmap-node node-features animated-branch" ondblclick="showDetail('網站特色', '提供互動式環保雷達圖分析，根據使用者的生活習慣給予個人化減碳建議。結合趣味知識卡片與實踐任務，讓環保不再是口號，而是一場充滿樂趣的數位體驗。')">
-            <i class="fas fa-star"></i>
-            <h4>💡 網站特色</h4>
+        <div class="mindmap-node node-features animated-branch right-side">
+            <div class="node-content">
+                <i class="fas fa-star"></i>
+                <h4>網站特色</h4>
+            </div>
+            <div class="node-detail">提供環保雷達圖分析與個人化建議。結合趣味互動卡片，讓減碳行動變得好玩又簡單。</div>
         </div>
         
-        <div class="mindmap-node node-value animated-branch" ondblclick="showDetail('核心價值', '秉持「Small Actions, Big Impact」的精神。我們相信，永續必須從每一筆消費開始，透過聰明選擇取代盲目購買，集結眾人之力就能創造顯著的環境改變。')">
-            <i class="fas fa-seedling"></i>
-            <h4>🌱 核心價值</h4>
+        <div class="mindmap-node node-value animated-branch right-side">
+            <div class="node-content">
+                <i class="fas fa-seedling"></i>
+                <h4>核心價值</h4>
+            </div>
+            <div class="node-detail">Small Actions, Big Impact. 我們深信永續從消費開始，聰明選擇能創造更美好的明天。</div>
         </div>
         
-        <div class="mindmap-node node-concept animated-branch" ondblclick="showDetail('我們的理念', '將複雜的 SDG12 條文轉化為生活化的簡單體驗。我們不只傳遞資訊，更強調「真實行動」。透過這座數位橋樑，讓使用者能更輕易地在便利生活與環境永續之間取得平衡。')">
-            <i class="fas fa-lightbulb"></i>
-            <h4>🌿 我們的理念</h4>
+        <div class="mindmap-node node-concept animated-branch right-side">
+            <div class="node-content">
+                <i class="fas fa-lightbulb"></i>
+                <h4>我們的理念</h4>
+            </div>
+            <div class="node-detail">將複雜的 SDG12 轉化為真實體驗。不只是資訊傳遞，更要讓環保成為每個人觸手可及的行動。</div>
         </div>
     </div>
 </section>
 
-<div id="detail-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h3 id="modal-title"></h3>
-        <hr>
-        <p id="modal-desc"></p>
-    </div>
-</div>
-
 <style>
-    /* 容器與首頁間距修復 */
-    #about { padding-top: 100px; }
+    #about { padding: 100px 0; overflow: visible; }
 
     .mindmap-container {
         position: relative;
-        max-width: 1000px;
+        max-width: 1100px;
         height: 600px;
         margin: 0 auto;
         display: flex;
@@ -424,8 +432,7 @@
         align-items: center;
     }
 
-    /* 中心節點樣式 */
-    .mindmap-center { z-index: 10; }
+    .mindmap-center { z-index: 15; }
     .center-node {
         background: var(--primary-green);
         color: white;
@@ -435,37 +442,75 @@
         border: 4px solid white;
     }
 
-    /* 節點定位與防止重疊 */
+    /* 節點基礎樣式 */
     .mindmap-node {
         position: absolute;
-        width: 180px;
+        display: flex;
+        align-items: center;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    /* 標題小卡片 */
+    .node-content {
         background: white;
-        padding: 15px;
-        border-radius: 12px;
+        padding: 15px 25px;
+        border-radius: 50px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        text-align: center;
+        border: 2px solid var(--light-green);
+        white-space: nowrap;
         cursor: pointer;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-        z-index: 5;
-        border-top: 4px solid var(--light-green);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 12;
     }
 
-    /* 滑鼠移入效果：全部統一向上浮動並放大 */
-    .mindmap-node:hover {
-        transform: translateY(-15px) scale(1.1) !important;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        border-top-color: var(--accent-orange);
+    /* 懸停時標題統一往上浮動 */
+    .mindmap-node:hover .node-content {
+        transform: translateY(-10px) scale(1.05);
+        border-color: var(--accent-orange);
     }
 
-    /* 精確座標 */
-    .node-bg { top: 5%; left: 15%; }
-    .node-issues { top: 45%; left: 0%; transform: translateY(-50%); }
-    .node-goal { bottom: 5%; left: 15%; }
-    .node-features { top: 5%; right: 15%; }
-    .node-value { top: 45%; right: 0%; transform: translateY(-50%); }
-    .node-concept { bottom: 5%; right: 15%; }
+    /* 詳細說明文字 (預設隱藏且寬度為0) */
+    .node-detail {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 0;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        font-size: 0.9rem;
+        color: var(--text-gray);
+        width: 0;
+        overflow: hidden;
+        white-space: normal;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        line-height: 1.5;
+        border-left: 0 solid var(--primary-green);
+    }
 
-    /* SVG 連線動畫 */
+    /* 左右展開邏輯 */
+    .left-side { flex-direction: row-reverse; } /* 標題在右，文字往左開 */
+    .right-side { flex-direction: row; }        /* 標題在左，文字往右開 */
+
+    /* 滑鼠移入：展開說明 */
+    .mindmap-node:hover .node-detail {
+        width: 250px;
+        padding: 15px;
+        opacity: 1;
+        margin: 0 15px; /* 與標題產生間距 */
+        border-left: 4px solid var(--primary-green);
+    }
+
+    /* 定位座標 */
+    .node-bg { top: 10%; left: 10%; }
+    .node-issues { top: 50%; left: 0%; transform: translateY(-50%); }
+    .node-goal { bottom: 10%; left: 10%; }
+    
+    .node-features { top: 10%; right: 10%; }
+    .node-value { top: 50%; right: 0%; transform: translateY(-50%); }
+    .node-concept { bottom: 10%; right: 10%; }
+
+    /* SVG 連線 */
     .mindmap-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
     .line { stroke: var(--light-green); stroke-width: 2; opacity: 0.3; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
     .line.animated { animation: drawLine 1.5s ease-out forwards; }
@@ -473,61 +518,38 @@
     @keyframes drawLine { to { stroke-dashoffset: 0; } }
 
     /* 發散動畫 */
-    .animated-branch { animation: spreadOut 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
-    @keyframes spreadOut {
-        from { transform: scale(0) translate(0, 0); opacity: 0; }
+    .animated-branch.active {
+        animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes popIn {
+        from { transform: scale(0.5) translate(0, 0); opacity: 0; }
         to { opacity: 1; }
     }
 
-    /* 詳情視窗樣式 */
-    .modal {
-        display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-        width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);
-    }
-    .modal-content {
-        background-color: white; margin: 15% auto; padding: 30px;
-        border-radius: 20px; width: 50%; max-width: 500px;
-        box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-    }
-    .close-btn { float: right; font-size: 28px; cursor: pointer; color: #aaa; }
-    .close-btn:hover { color: black; }
-    hr { margin: 15px 0; border: 0; border-top: 1px solid #eee; }
-
-    @media (max-width: 768px) {
-        .mindmap-container { height: auto; flex-direction: column; gap: 15px; }
-        .mindmap-node { position: static; width: 90%; transform: none !important; }
+    @media (max-width: 900px) {
+        .mindmap-container { height: auto; flex-direction: column; }
+        .mindmap-node { position: static; flex-direction: column; margin-bottom: 20px; opacity: 1; transform: none !important; }
+        .node-detail { width: 90% !important; height: auto; opacity: 1; padding: 10px; margin-top: 10px; }
         .mindmap-lines { display: none; }
     }
 </style>
 
 <script>
-    // 點擊兩下顯示詳情
-    function showDetail(title, desc) {
-        document.getElementById('modal-title').innerText = title;
-        document.getElementById('modal-desc').innerText = desc;
-        document.getElementById('detail-modal').style.display = "block";
-    }
+    // 滾動偵測與動畫啟動
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.line').forEach(l => l.classList.add('animated'));
+                    document.querySelectorAll('.animated-branch').forEach(n => n.classList.add('active'));
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
-    function closeModal() {
-        document.getElementById('detail-modal').style.display = "none";
-    }
-
-    // 點擊視窗外部關閉
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('detail-modal')) closeModal();
-    }
-
-    // 滾動觸發動畫
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                document.querySelectorAll('.line').forEach(l => l.classList.add('animated'));
-                document.querySelectorAll('.animated-branch').forEach(n => n.classList.add('active'));
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    observer.observe(document.querySelector('#about'));
+        observer.observe(document.querySelector('#about'));
+    });
 </script>
 
     <script>
