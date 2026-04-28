@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -23,6 +22,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -96,6 +99,13 @@
             font-weight: 500;
         }
 
+        .hero .slogan {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
         /* 內容區塊通用樣式 */
         section {
             padding: 80px 10%;
@@ -108,22 +118,92 @@
             color: var(--dark-olive);
         }
 
-        /* 關於我們 */
-        .about-grid {
+        /* --- 關於我們：心智圖樣式 --- */
+        .mindmap-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mindmap-center {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .center-node {
+            background: var(--primary-green);
+            color: white;
+            padding: 30px 60px;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 124, 89, 0.3);
+            z-index: 5;
+            border: 4px solid white;
+        }
+
+        .center-node h3 { font-size: 2rem; margin-bottom: 5px; }
+        .center-node p { font-size: 1rem; opacity: 0.9; }
+
+        .mindmap-branches {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            align-items: center;
         }
 
-        .about-card {
+        .branch-group {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .mindmap-node {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-top: 5px solid var(--light-green);
+            position: relative;
         }
 
-        /* 問題與解方 (卡片翻轉效果) */
+        .mindmap-node:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--accent-orange);
+        }
+
+        .mindmap-node i {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .mindmap-node h4 {
+            margin-bottom: 12px;
+            color: var(--dark-olive);
+            font-size: 1.2rem;
+        }
+
+        .mindmap-node p, .mindmap-node li {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            list-style: none;
+        }
+
+        .mindmap-node ul {
+            padding-left: 0;
+        }
+
+        .mindmap-node li::before {
+            content: "•";
+            color: var(--light-green);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -0.5em;
+        }
+
+        /* 問題與解方 (翻轉卡片) */
         .issue-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -147,7 +227,6 @@
             cursor: pointer;
         }
 
-        /* 移除 hover 效果，改用 class 控制翻轉 */
         .flip-card.is-flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
@@ -156,7 +235,6 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -184,11 +262,8 @@
             color: var(--primary-green);
         }
 
-        .flip-card-back i {
-            color: white;
-        }
+        .flip-card-back i { color: white; }
 
-        /* 新增查看更多按鈕樣式 */
         .read-more-btn {
             margin-top: 20px;
             padding: 10px 20px;
@@ -202,18 +277,8 @@
             transition: 0.3s;
         }
 
-        .read-more-btn:hover {
-            background-color: var(--dark-olive);
-        }
-
-        .btn-back {
-            background-color: white;
-            color: var(--primary-green);
-        }
-
-        .btn-back:hover {
-            background-color: #f0f0f0;
-        }
+        .read-more-btn:hover { background-color: var(--dark-olive); }
+        .btn-back { background-color: white; color: var(--primary-green); }
 
         /* 環保測驗區 */
         .quiz-container {
@@ -244,10 +309,7 @@
             align-items: center;
         }
 
-        #radarChart {
-            max-width: 400px;
-            margin: 0 auto;
-        }
+        #radarChart { max-width: 400px; margin: 0 auto; }
 
         /* 頁尾 */
         footer {
@@ -268,14 +330,11 @@
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background: var(--dark-olive);
-        }
+        .btn:hover { background: var(--dark-olive); }
 
-        @media (max-width: 768px) {
-            .about-grid, .result-area {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 900px) {
+            .mindmap-branches { grid-template-columns: 1fr; }
+            .about-grid, .result-area { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
         }
     </style>
@@ -297,18 +356,66 @@
     <section id="home" class="hero">
         <h1>EcoPulse</h1>
         <p>SDG 12 責任消費與生產</p>
+        <p class="slogan">"Small Actions, Big Impact. 永續，從日常開始。"</p>
     </section>
 
     <section id="about">
         <h2 class="section-title">關於我們</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>問題意識</h3>
-                <p>現代社會存在過度消費、塑膠污染與食物浪費等問題。我們希望透過本網站,讓使用者了解自身的消費習慣對環境的影響。</p>
+        <div class="mindmap-container">
+            <div class="mindmap-center">
+                <div class="center-node">
+                    <h3>ECO PULSE</h3>
+                    <p>資管系永續推廣團隊</p>
+                </div>
             </div>
-            <div class="about-card">
-                <h3>我們的理念</h3>
-                <p>我們致力於將永續發展目標(SDG 12)轉化為簡單的日常生活指標，讓每個人都能成為改變的一份子。</p>
+
+            <div class="mindmap-branches">
+                <div class="branch-group">
+                    <div class="mindmap-node">
+                        <i class="fas fa-globe-asia"></i>
+                        <h4>🌍 核心背景</h4>
+                        <p>因應現代社會過度消費與環境污染，我們希望透過 SDG12 推廣永續生活理念，減少資源浪費。</p>
+                    </div>
+                    <div class="mindmap-node">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>⚠️ 問題意識</h4>
+                        <ul>
+                            <li>過度消費與資源浪費</li>
+                            <li>一次性塑膠污染</li>
+                            <li>食物浪費影響未來環境</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="branch-group">
+                    <div class="mindmap-node">
+                        <i class="fas fa-bullseye"></i>
+                        <h4>🎯 團隊目標</h4>
+                        <p>透過互動網站了解消費習慣，進而提升環保意識，將永續發展融入日常行為中。</p>
+                    </div>
+                    <div class="mindmap-node">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>🌿 我們的理念</h4>
+                        <p>將複雜的 SDG12 概念轉化為簡單有趣的互動體驗，讓環保不再只是口號，而是真實行動。</p>
+                    </div>
+                </div>
+
+                <div class="branch-group">
+                    <div class="mindmap-node">
+                        <i class="fas fa-star"></i>
+                        <h4>💡 網站特色</h4>
+                        <ul>
+                            <li>環保指數雷達圖分析</li>
+                            <li>個人化環保行為建議</li>
+                            <li>SDG12 互動知識卡片</li>
+                        </ul>
+                    </div>
+                    <div class="mindmap-node">
+                        <i class="fas fa-seedling"></i>
+                        <h4>🌱 核心價值</h4>
+                        <p>我們相信小小的生活改變，也能對環境帶來巨大的影響。永續，從你的每一次消費開始。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -410,16 +517,14 @@
 
     <footer>
         <p>© 2024 EcoPulse | 資管二B 祝善煦、朱家締、羅乃慈</p>
-        <p>責任消費與生產，從你我開始。</p>
+        <p>由資管系學生團隊開發，透過科技與設計推廣 SDG12 永續理念。</p>
     </footer>
 
     <script>
-        // 控制卡片翻轉的函式
         function toggleFlip(card) {
             card.classList.toggle('is-flipped');
         }
 
-        // 初始化雷達圖
         const ctx = document.getElementById('radarChart').getContext('2d');
         let radarChart = new Chart(ctx, {
             type: 'radar',
@@ -448,7 +553,6 @@
             const q2 = parseInt(document.querySelector('input[name="q2"]:checked').value);
             const q3 = parseInt(document.querySelector('input[name="q3"]:checked').value);
             
-            // 模擬隨機權重分配給雷達圖
             const newData = [q1, q3, q2, (q1+q2)/2, 4];
             radarChart.data.datasets[0].data = newData;
             radarChart.update();
@@ -466,5 +570,4 @@
     </script>
 </body>
 </html>
-
 
