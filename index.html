@@ -303,7 +303,6 @@
 
         <div class="center-core">
             <h3>ECO PULSE</h3>
-            <span>關於我們</span>
         </div>
 
         <div class="node" data-pos="lt" data-info="推廣 SDG12 理念，透過數據分析減少資源浪費，從源頭守護地球環境。"><h4>背景</h4></div>
@@ -318,7 +317,7 @@
 
 <style>
     #about-mindmap {
-        padding: 50px 0;
+        padding: 40px 0;
         background-color: #F4F1DE;
         overflow: hidden;
         position: relative;
@@ -327,37 +326,36 @@
         text-align: center;
         color: #4A7C59;
         font-size: 2.5rem;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     .map-container {
         position: relative;
         width: 1000px;
-        height: 600px;
+        height: 550px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    /* 中心點 */
+    /* 中心核心 */
     .center-core {
         background: #4A7C59;
         color: white;
-        padding: 30px 50px;
-        border-radius: 50%;
+        padding: 35px 55px;
+        border-radius: 60px;
         text-align: center;
         z-index: 100;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         border: 4px solid #fff;
     }
-    .center-core h3 { font-size: 1.8rem; margin: 0; }
-    .center-core span { font-size: 1.2rem; opacity: 0.9; }
+    .center-core h3 { font-size: 2.2rem; margin: 0; }
 
-    /* 圓形標題節點 */
+    /* 放大後的圓形節點 */
     .node {
         position: absolute;
-        width: 120px;
-        height: 80px;
+        width: 140px; /* 放大寬度 */
+        height: 90px;  /* 放大高度 */
         background: white;
         border: 2px solid #4A7C59;
         border-radius: 50px;
@@ -367,13 +365,22 @@
         cursor: pointer;
         z-index: 50;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-        animation: branchIn 0.8s forwards;
+        
+        /* 延伸動畫：從中心點彈出 */
+        animation: growOut 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         opacity: 0;
+        transform-origin: center;
     }
-    .node h4 { margin: 0; color: #4A7C59; font-size: 1.1rem; pointer-events: none; }
+    .node h4 { margin: 0; color: #4A7C59; font-size: 1.2rem; pointer-events: none; }
     .node:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 
-    /* 詳細資訊浮窗 (向外側顯示) */
+    /* 從中心延伸的動畫邏輯 */
+    @keyframes growOut {
+        0% { transform: scale(0) translate(0, 0); opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    /* 詳細資訊浮窗 */
     .detail-pop {
         position: absolute;
         background: white;
@@ -383,37 +390,34 @@
         border-radius: 8px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         z-index: 200;
-        font-size: 0.95rem;
+        font-size: 1rem;
         color: #333;
         line-height: 1.6;
         pointer-events: none;
-        animation: fadeIn 0.3s ease;
     }
 
-    /* 座標定位 */
-    .node[data-pos="lt"] { top: 10%; left: 15%; }
-    .node[data-pos="lm"] { top: 45%; left: 5%; }
-    .node[data-pos="lb"] { bottom: 10%; left: 15%; }
-    .node[data-pos="rt"] { top: 10%; right: 15%; }
-    .node[data-pos="rm"] { top: 45%; right: 5%; }
-    .node[data-pos="rb"] { bottom: 10%; right: 15%; }
+    /* 調整座標位置：向中心聚集 */
+    .node[data-pos="lt"] { top: 15%; left: 22%; }
+    .node[data-pos="lm"] { top: 48%; left: 12%; transform: translateY(-50%); }
+    .node[data-pos="lb"] { bottom: 15%; left: 22%; }
+    
+    .node[data-pos="rt"] { top: 15%; right: 22%; }
+    .node[data-pos="rm"] { top: 48%; right: 12%; transform: translateY(-50%); }
+    .node[data-pos="rb"] { bottom: 15%; right: 22%; }
 
-    /* 線條 */
+    /* 線條圖層 */
     .map-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
-    .map-line { stroke: #4A7C59; stroke-width: 2; opacity: 0.4; fill: none; }
-
-    @keyframes branchIn {
-        from { transform: scale(0) translate(0, 0); opacity: 0; }
-        to { opacity: 1; }
+    .map-line { 
+        stroke: #4A7C59; 
+        stroke-width: 2; 
+        opacity: 0.4; 
+        fill: none;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: drawLine 1s ease-out 0.3s forwards;
     }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* 手機版適配 */
-    @media (max-width: 1024px) {
-        .map-container { width: 100%; height: auto; flex-direction: column; gap: 20px; }
-        .node { position: static; width: 80%; opacity: 1; animation: none; margin: 10px 0; }
-        .map-svg, .center-core { display: none; }
-    }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
 </style>
 
 <script>
@@ -423,11 +427,10 @@
         const linesGroup = document.querySelector('.lines-group');
         const center = document.querySelector('.center-core');
 
-        // 動態繪製連線
         function drawLines() {
             linesGroup.innerHTML = '';
-            const cRect = center.getBoundingClientRect();
             const containerRect = container.getBoundingClientRect();
+            const cRect = center.getBoundingClientRect();
             const cx = cRect.left + cRect.width / 2 - containerRect.left;
             const cy = cRect.top + cRect.height / 2 - containerRect.top;
 
@@ -444,7 +447,6 @@
             });
         }
 
-        // 監聽 Hover 顯示詳細資訊
         nodes.forEach(node => {
             node.addEventListener('mouseenter', (e) => {
                 const info = node.getAttribute('data-info');
@@ -452,31 +454,25 @@
                 const detail = document.createElement('div');
                 detail.className = 'detail-pop';
                 detail.innerHTML = `<p>${info}</p>`;
-                
                 document.body.appendChild(detail);
 
                 const rect = node.getBoundingClientRect();
-                // 智能定位：左側節點說明向左彈，右側向右彈，且確保不出視窗
                 if (pos.includes('l')) {
                     detail.style.left = (rect.left - 270) + 'px';
                 } else {
                     detail.style.left = (rect.right + 20) + 'px';
                 }
                 detail.style.top = (rect.top - 10) + 'px';
-                
                 node._detail = detail;
             });
 
             node.addEventListener('mouseleave', () => {
-                if (node._detail) {
-                    node._detail.remove();
-                    node._detail = null;
-                }
+                if (node._detail) { node._detail.remove(); node._detail = null; }
             });
         });
 
         window.addEventListener('resize', drawLines);
-        setTimeout(drawLines, 500); // 延遲繪圖確保座標正確
+        setTimeout(drawLines, 800); // 等動畫結束再畫線
     });
 </script>
 
