@@ -351,39 +351,17 @@
         </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>EcoPulse</h1>
-        <p>SDG 12 責任消費與生產</p>
-        <p class="slogan">"Small Actions, Big Impact. 永續，從日常開始。"</p>
-    </section>
-
-    <section id="about">
+<section id="about">
         <h2 class="section-title">關於我們</h2>
-        <div class="mindmap-container" id="mindmap">
-            
-            <div class="branch-group-left">
-                <div class="mindmap-node node-bg animated-branch animated" data-delay="1">
-                    <i class="fas fa-globe-asia"></i>
-                    <h4>🌍 核心背景</h4>
-                    <p>因應現代社會過度消費與環境污染，我們希望透過 SDG12 推廣永續生活理念，減少資源浪費。</p>
-                </div>
-                
-                <div class="mindmap-node node-issues animated-branch animated" data-delay="2">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h4>⚠️ 問題意識</h4>
-                    <ul>
-                        <li>過度消費與資源浪費</li>
-                        <li>一次性塑膠污染</li>
-                        <li>食物浪費影響未來環境</li>
-                    </ul>
-                </div>
-                
-                <div class="mindmap-node node-goal animated-branch animated" data-delay="3">
-                    <i class="fas fa-bullseye"></i>
-                    <h4>🎯 團隊目標</h4>
-                    <p>透過互動網站了解消費習慣，進而提升環保意識，將永續發展融入日常行為中。</p>
-                </div>
-            </div>
+        <div class="mindmap-container">
+            <svg class="mindmap-lines">
+                <line class="line" x1="50%" y1="50%" x2="20%" y2="20%" />
+                <line class="line" x1="50%" y1="50%" x2="12%" y2="50%" />
+                <line class="line" x1="50%" y1="50%" x2="20%" y2="80%" />
+                <line class="line" x1="50%" y1="50%" x2="80%" y2="20%" />
+                <line class="line" x1="50%" y1="50%" x2="88%" y2="50%" />
+                <line class="line" x1="50%" y1="50%" x2="80%" y2="80%" />
+            </svg>
 
             <div class="mindmap-center">
                 <div class="center-node">
@@ -392,32 +370,169 @@
                 </div>
             </div>
 
-            <div class="branch-group-right">
-                <div class="mindmap-node node-features animated-branch animated" data-delay="4">
-                    <i class="fas fa-star"></i>
-                    <h4>💡 網站特色</h4>
-                    <ul>
-                        <li>環保指數雷達圖分析</li>
-                        <li>個人化環保行為建議</li>
-                        <li>SDG12 互動知識卡片</li>
-                    </ul>
-                </div>
-                
-                <div class="mindmap-node node-value animated-branch animated" data-delay="5">
-                    <i class="fas fa-seedling"></i>
-                    <h4>🌱 核心價值</h4>
-                    <p>我們相信小小的生活改變，也能對環境帶來巨大的影響。永續從每一次消費開始。</p>
-                </div>
-                
-                <div class="mindmap-node node-concept animated-branch animated" data-delay="6">
-                    <i class="fas fa-lightbulb"></i>
-                    <h4>🌿 我們的理念</h4>
-                    <p>將複雜的 SDG12 概念轉化為簡單有趣的互動體驗，讓環保真實行動。</p>
-                </div>
+            <div class="mindmap-node node-bg animated-branch">
+                <i class="fas fa-globe-asia"></i>
+                <h4>🌍 核心背景</h4>
+                <p>因應現代過度消費，推廣 SDG12 理念減少資源浪費。</p>
+            </div>
+            
+            <div class="mindmap-node node-issues animated-branch">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>⚠️ 問題意識</h4>
+                <p>塑膠污染、食物浪費及資源耗損正在影響未來。</p>
+            </div>
+            
+            <div class="mindmap-node node-goal animated-branch">
+                <i class="fas fa-bullseye"></i>
+                <h4>🎯 團隊目標</h4>
+                <p>提升大眾環保意識，將永續融入日常行為中。</p>
             </div>
 
+            <div class="mindmap-node node-features animated-branch">
+                <i class="fas fa-star"></i>
+                <h4>💡 網站特色</h4>
+                <p>環保雷達圖分析、個人化建議與互動知識卡片。</p>
+            </div>
+            
+            <div class="mindmap-node node-value animated-branch">
+                <i class="fas fa-seedling"></i>
+                <h4>🌱 核心價值</h4>
+                <p>Small Actions, Big Impact. 永續從消費開始。</p>
+            </div>
+            
+            <div class="mindmap-node node-concept animated-branch">
+                <i class="fas fa-lightbulb"></i>
+                <h4>🌿 我們的理念</h4>
+                <p>將 SDG12 轉化為簡單體驗，讓環保成為真實行動。</p>
+            </div>
         </div>
     </section>
+
+    <style>
+        /* 修復：心智圖容器 */
+        .mindmap-container {
+            position: relative;
+            max-width: 1100px;
+            height: 650px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mindmap-center { z-index: 10; position: relative; }
+
+        .center-node {
+            background: var(--primary-green);
+            color: white;
+            padding: 25px 45px;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 124, 89, 0.4);
+            border: 4px solid white;
+        }
+
+        /* 統一節點樣式 */
+        .mindmap-node {
+            position: absolute;
+            width: 240px;
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--light-green);
+            opacity: 0;
+            transition: transform 0.3s ease, border-color 0.3s;
+            z-index: 5;
+        }
+
+        .mindmap-node:hover {
+            border-top-color: var(--accent-orange);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* 精確座標調整 - 解決「跑太遠」的問題 */
+        .node-bg { top: 8%; left: 8%; }
+        .node-issues { top: 45%; left: 0%; transform: translateY(-50%); }
+        .node-goal { bottom: 8%; left: 8%; }
+        
+        .node-features { top: 8%; right: 8%; }
+        .node-value { top: 45%; right: 0%; transform: translateY(-50%); }
+        .node-concept { bottom: 8%; right: 8%; }
+
+        /* SVG 線條樣式 */
+        .mindmap-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .line {
+            stroke: var(--light-green);
+            stroke-width: 2;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            opacity: 0.3;
+        }
+
+        /* 動畫效果 */
+        .mindmap-node.animated {
+            animation: popInNode 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .line.animated {
+            animation: drawLineNode 1.5s ease-out forwards;
+        }
+
+        @keyframes popInNode {
+            from { transform: scale(0.5); opacity: 0; }
+            to { opacity: 1; } /* 定位由絕對坐標決定，這裡不變動 transform */
+        }
+
+        @keyframes drawLineNode {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* 依序延遲動畫 */
+        .node-bg.animated { animation-delay: 0.2s; }
+        .node-issues.animated { animation-delay: 0.4s; }
+        .node-goal.animated { animation-delay: 0.6s; }
+        .node-features.animated { animation-delay: 0.8s; }
+        .node-value.animated { animation-delay: 1.0s; }
+        .node-concept.animated { animation-delay: 1.2s; }
+
+        /* RWD 手機版修復 */
+        @media (max-width: 850px) {
+            .mindmap-container { height: auto; flex-direction: column; padding: 20px 0; }
+            .mindmap-node { position: relative; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; width: 90%; opacity: 1 !important; transform: none !important; margin-bottom: 15px; }
+            .mindmap-lines { display: none; }
+            .mindmap-center { margin-bottom: 30px; }
+        }
+    </style>
+
+    <script>
+        // 改進後的滾動觸發邏輯
+        document.addEventListener('DOMContentLoaded', () => {
+            const aboutSection = document.querySelector('#about');
+            const nodes = document.querySelectorAll('.mindmap-node');
+            const lines = document.querySelectorAll('.line');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        nodes.forEach(n => n.classList.add('animated'));
+                        lines.forEach(l => l.classList.add('animated'));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(aboutSection);
+        });
+    </script>
 
     <section id="issues" style="background-color: #E9EDC9;">
         <h2 class="section-title">問題與解決方案</h2>
