@@ -294,191 +294,191 @@
         </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>EcoPulse</h1>
-        <p>SDG 12 責任消費與生產</p>
-    </section>
-
-    <section id="about">
-    <h2 class="section-title">關於我們</h2>
-    <div class="mindmap-wrapper">
-        <svg class="mindmap-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <line class="line" x1="50" y1="50" x2="20" y2="20" />
-            <line class="line" x1="50" y1="50" x2="15" y2="50" />
-            <line class="line" x1="50" y1="50" x2="20" y2="80" />
-            <line class="line" x1="50" y1="50" x2="80" y2="20" />
-            <line class="line" x1="50" y1="50" x2="85" y2="50" />
-            <line class="line" x1="50" y1="50" x2="80" y2="80" />
+   <section id="about-mindmap">
+    <h2 class="about-title">關於我們</h2>
+    <div class="map-container">
+        <svg class="map-svg" viewBox="0 0 1000 600">
+            <g class="lines-group"></g>
         </svg>
 
-        <div class="mindmap-grid">
-            <div class="node-item left-item" style="grid-area: lt;">
-                <div class="node-content"><h4>🌍 核心背景</h4></div>
-                <div class="node-detail"><p>推廣 SDG12 理念，透過數據分析減少資源浪費，從源頭守護地球環境。</p></div>
-            </div>
-            <div class="node-item left-item" style="grid-area: lm;">
-                <div class="node-content"><h4>⚠️ 問題意識</h4></div>
-                <div class="node-detail"><p>塑膠污染與食物浪費嚴重影響未來，我們致力於喚起大眾對消費習慣的警覺。</p></div>
-            </div>
-            <div class="node-item left-item" style="grid-area: lb;">
-                <div class="node-content"><h4>🎯 團隊目標</h4></div>
-                <div class="node-detail"><p>將永續融入日常，讓每個人都能看到自己小行為對環境產生的巨大正面改變。</p></div>
-            </div>
-
-            <div class="node-center" style="grid-area: mid;">
-                <div class="center-box">
-                    <h3>ECO PULSE</h3>
-                </div>
-            </div>
-
-            <div class="node-item right-item" style="grid-area: rt;">
-                <div class="node-content"><h4>💡 網站特色</h4></div>
-                <div class="node-detail"><p>提供環保雷達圖與個人化建議，結合互動任務讓減碳行動變得好玩又簡單。</p></div>
-            </div>
-            <div class="node-item right-item" style="grid-area: rm;">
-                <div class="node-content"><h4>🌱 核心價值</h4></div>
-                <div class="node-detail"><p>Small Actions, Big Impact. 永續從消費開始，聰明選擇創造美好明天。</p></div>
-            </div>
-            <div class="node-item right-item" style="grid-area: rb;">
-                <div class="node-content"><h4>🌿 我們的理念</h4></div>
-                <div class="node-detail"><p>將複雜條文轉化為真實體驗，讓環保成為每個人在生活中觸手可及的行動。</p></div>
-            </div>
+        <div class="center-core">
+            <h3>ECO PULSE</h3>
+            <span>關於我們</span>
         </div>
+
+        <div class="node" data-pos="lt" data-info="推廣 SDG12 理念，透過數據分析減少資源浪費，從源頭守護地球環境。"><h4>背景</h4></div>
+        <div class="node" data-pos="lm" data-info="塑膠污染與食物浪費嚴重影響未來，我們致力於喚起大眾對消費習慣的警覺。"><h4>問題意識</h4></div>
+        <div class="node" data-pos="lb" data-info="將永續融入日常，讓每個人都能看到自己小行為對環境產生的巨大正面改變。"><h4>目標</h4></div>
+        
+        <div class="node" data-pos="rt" data-info="提供環保雷達圖與個人化建議，結合互動任務讓減碳行動變得好玩又簡單。"><h4>網站特色</h4></div>
+        <div class="node" data-pos="rm" data-info="Small Actions, Big Impact. 永續從消費開始，聰明選擇創造美好明天。"><h4>核心價值</h4></div>
+        <div class="node" data-pos="rb" data-info="將複雜條文轉化為真實體驗，讓環保成為每個人在生活中觸手可及的行動。"><h4>我們的理念</h4></div>
     </div>
 </section>
 
 <style>
-    #about {
-        padding: 40px 20px;
+    #about-mindmap {
+        padding: 50px 0;
         background-color: #F4F1DE;
+        overflow: hidden;
+        position: relative;
+    }
+    .about-title {
         text-align: center;
-    }
-
-    .section-title {
-        margin-bottom: 30px;
         color: #4A7C59;
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
     }
-
-    .mindmap-wrapper {
+    .map-container {
         position: relative;
-        max-width: 1000px;
+        width: 1000px;
+        height: 600px;
         margin: 0 auto;
-        min-height: 500px;
-    }
-
-    /* 網格佈局：確保中心點絕對固定 */
-    .mindmap-grid {
-        display: grid;
-        grid-template-areas: 
-            "lt . rt"
-            "lm mid rm"
-            "lb . rb";
-        grid-template-columns: 1fr 1.2fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 40px 20px;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        justify-items: center;
-        position: relative;
-        z-index: 10;
     }
 
-    /* 中心核心樣式 */
-    .center-box {
+    /* 中心點 */
+    .center-core {
         background: #4A7C59;
         color: white;
-        padding: 25px 45px;
-        border-radius: 50px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        border: 4px solid white;
-    }
-
-    /* 節點通用樣式 */
-    .node-item {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-
-    .node-content {
-        background: white;
-        padding: 12px 20px;
-        border-radius: 30px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        border: 2px solid #8FB996;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-        margin: 0 auto;
-    }
-
-    .node-item:hover .node-content {
-        transform: translateY(-5px) scale(1.05);
-        border-color: #4A7C59;
+        padding: 30px 50px;
+        border-radius: 50%;
+        text-align: center;
         z-index: 100;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 4px solid #fff;
     }
+    .center-core h3 { font-size: 1.8rem; margin: 0; }
+    .center-core span { font-size: 1.2rem; opacity: 0.9; }
 
-    /* 詳細內容：絕對定位浮動，向內展開防止擋住 */
-    .node-detail {
+    /* 圓形標題節點 */
+    .node {
         position: absolute;
-        width: 0;
+        width: 120px;
+        height: 80px;
         background: white;
-        padding: 0;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        opacity: 0;
-        overflow: hidden;
-        transition: width 0.4s ease, opacity 0.3s ease;
-        pointer-events: none;
-        z-index: 110;
+        border: 2px solid #4A7C59;
+        border-radius: 50px;
         display: flex;
+        justify-content: center;
         align-items: center;
-        height: 90px;
+        cursor: pointer;
+        z-index: 50;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        animation: branchIn 0.8s forwards;
+        opacity: 0;
     }
+    .node h4 { margin: 0; color: #4A7C59; font-size: 1.1rem; pointer-events: none; }
+    .node:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 
-    /* 左側節點：說明向右邊(內)展開 */
-    .left-item { justify-content: flex-end; }
-    .left-item .node-detail { left: 100%; margin-left: 10px; border-left: 5px solid #4A7C59; }
-
-    /* 右側節點：說明向左邊(內)展開 */
-    .right-item { justify-content: flex-start; }
-    .right-item .node-detail { right: 100%; margin-right: 10px; border-right: 5px solid #4A7C59; text-align: right; }
-
-    .node-item:hover .node-detail {
-        width: 220px;
-        padding: 10px 15px;
-        opacity: 1;
-    }
-
-    .node-detail p {
-        margin: 0;
-        font-size: 0.85rem;
-        line-height: 1.4;
-        color: #333;
-        min-width: 190px;
-    }
-
-    /* 背景連線 SVG */
-    .mindmap-lines {
+    /* 詳細資訊浮窗 (向外側顯示) */
+    .detail-pop {
         position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
+        background: white;
+        border-left: 5px solid #4A7C59;
+        padding: 15px;
+        width: 250px;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        z-index: 200;
+        font-size: 0.95rem;
+        color: #333;
+        line-height: 1.6;
         pointer-events: none;
-        z-index: 1;
+        animation: fadeIn 0.3s ease;
     }
-    .line { stroke: #8FB996; stroke-width: 1.5; opacity: 0.4; }
 
-    /* 手機版排版 */
-    @media (max-width: 768px) {
-        .mindmap-grid {
-            display: flex;
-            flex-direction: column;
-        }
-        .node-detail { position: static; width: 100% !important; height: auto; opacity: 1; padding: 10px !important; margin: 10px 0 !important; }
-        .node-center, .mindmap-lines { display: none; }
+    /* 座標定位 */
+    .node[data-pos="lt"] { top: 10%; left: 15%; }
+    .node[data-pos="lm"] { top: 45%; left: 5%; }
+    .node[data-pos="lb"] { bottom: 10%; left: 15%; }
+    .node[data-pos="rt"] { top: 10%; right: 15%; }
+    .node[data-pos="rm"] { top: 45%; right: 5%; }
+    .node[data-pos="rb"] { bottom: 10%; right: 15%; }
+
+    /* 線條 */
+    .map-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
+    .map-line { stroke: #4A7C59; stroke-width: 2; opacity: 0.4; fill: none; }
+
+    @keyframes branchIn {
+        from { transform: scale(0) translate(0, 0); opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 手機版適配 */
+    @media (max-width: 1024px) {
+        .map-container { width: 100%; height: auto; flex-direction: column; gap: 20px; }
+        .node { position: static; width: 80%; opacity: 1; animation: none; margin: 10px 0; }
+        .map-svg, .center-core { display: none; }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.map-container');
+        const nodes = document.querySelectorAll('.node');
+        const linesGroup = document.querySelector('.lines-group');
+        const center = document.querySelector('.center-core');
+
+        // 動態繪製連線
+        function drawLines() {
+            linesGroup.innerHTML = '';
+            const cRect = center.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const cx = cRect.left + cRect.width / 2 - containerRect.left;
+            const cy = cRect.top + cRect.height / 2 - containerRect.top;
+
+            nodes.forEach(node => {
+                const nRect = node.getBoundingClientRect();
+                const nx = nRect.left + nRect.width / 2 - containerRect.left;
+                const ny = nRect.top + nRect.height / 2 - containerRect.top;
+
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("x1", cx); line.setAttribute("y1", cy);
+                line.setAttribute("x2", nx); line.setAttribute("y2", ny);
+                line.setAttribute("class", "map-line");
+                linesGroup.appendChild(line);
+            });
+        }
+
+        // 監聽 Hover 顯示詳細資訊
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', (e) => {
+                const info = node.getAttribute('data-info');
+                const pos = node.getAttribute('data-pos');
+                const detail = document.createElement('div');
+                detail.className = 'detail-pop';
+                detail.innerHTML = `<p>${info}</p>`;
+                
+                document.body.appendChild(detail);
+
+                const rect = node.getBoundingClientRect();
+                // 智能定位：左側節點說明向左彈，右側向右彈，且確保不出視窗
+                if (pos.includes('l')) {
+                    detail.style.left = (rect.left - 270) + 'px';
+                } else {
+                    detail.style.left = (rect.right + 20) + 'px';
+                }
+                detail.style.top = (rect.top - 10) + 'px';
+                
+                node._detail = detail;
+            });
+
+            node.addEventListener('mouseleave', () => {
+                if (node._detail) {
+                    node._detail.remove();
+                    node._detail = null;
+                }
+            });
+        });
+
+        window.addEventListener('resize', drawLines);
+        setTimeout(drawLines, 500); // 延遲繪圖確保座標正確
+    });
+</script>
 
     <section id="issues" style="background-color: #E9EDC9;">
         <h2 class="section-title">問題與解決方案</h2>
