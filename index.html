@@ -363,26 +363,22 @@
         width: 1000px;
         height: 580px;
         margin: 0 auto;
-        /* 使用 flex 輔助中間節點置中 */
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    /* 中心核心 */
     .center-core {
         background: #4A7C59;
         color: white;
         padding: 35px 60px;
         border-radius: 60px;
-        text-align: center;
         z-index: 100;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         border: 4px solid #fff;
     }
-    .center-core h3 { font-size: 2.3rem; margin: 0; letter-spacing: 1px; }
+    .center-core h3 { font-size: 2.3rem; margin: 0; }
 
-    /* 節點通用樣式 */
     .node {
         position: absolute;
         width: 160px; 
@@ -395,23 +391,16 @@
         align-items: center;
         cursor: pointer;
         z-index: 50;
-        /* 移除 transform 衝突，統一使用 scale */
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
         animation: growOut 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         opacity: 0;
     }
 
-    .node-text {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
+    .node-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
     .icon { font-size: 1.8rem; margin-bottom: 5px; color: #4A7C59; }
     .node h4 { margin: 0; color: #4A7C59; font-size: 1.25rem; font-weight: bold; }
 
-    /* 滑鼠移過僅放大，不位移 */
+    /* 原地放大，不產生位移 */
     .node:hover { 
         transform: scale(1.1) !important; 
         box-shadow: 0 12px 25px rgba(74, 124, 89, 0.15);
@@ -422,7 +411,7 @@
         100% { transform: scale(1); opacity: 1; }
     }
 
-    /* 詳細資訊彈出窗 */
+    /* 詳細資訊浮窗 */
     .detail-pop {
         position: absolute;
         background: white;
@@ -436,29 +425,21 @@
         color: #333;
         line-height: 1.6;
         pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
     }
+    .detail-pop.show { opacity: 1; }
 
-    /* 座標定位：修正 lm/rm 的定位方式以避免動畫衝突 */
+    /* 位置設定 (使用 calc 確保置中且避免 translateY 衝突) */
     .node[data-pos="lt"] { top: 10%; left: 25%; }
-    .node[data-pos="lm"] { top: calc(50% - 55px); left: 15%; } /* 使用 calc 確保置中且不衝突 */
+    .node[data-pos="lm"] { top: calc(50% - 55px); left: 15%; }
     .node[data-pos="lb"] { bottom: 10%; left: 25%; }
-    
     .node[data-pos="rt"] { top: 10%; right: 25%; }
-    .node[data-pos="rm"] { top: calc(50% - 55px); right: 15%; } /* 55px 是節點高度的一半 */
+    .node[data-pos="rm"] { top: calc(50% - 55px); right: 15%; }
     .node[data-pos="rb"] { bottom: 10%; right: 25%; }
 
-    /* 連線圖層 */
     .map-svg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
-    .map-line { 
-        stroke: #4A7C59; 
-        stroke-width: 2.2; 
-        opacity: 0.2; 
-        fill: none;
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
-        animation: drawLine 1.2s ease-out 0.5s forwards;
-    }
-
+    .map-line { stroke: #4A7C59; stroke-width: 2.2; opacity: 0.2; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 1.2s ease-out 0.5s forwards; }
     @keyframes drawLine { to { stroke-dashoffset: 0; } }
 </style>
 
@@ -480,7 +461,6 @@
                 const nRect = node.getBoundingClientRect();
                 const nx = nRect.left + nRect.width / 2 - containerRect.left;
                 const ny = nRect.top + nRect.height / 2 - containerRect.top;
-
                 const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
                 line.setAttribute("x1", cx); line.setAttribute("y1", cy);
                 line.setAttribute("x2", nx); line.setAttribute("y2", ny);
@@ -496,77 +476,32 @@
                 const detail = document.createElement('div');
                 detail.className = 'detail-pop';
                 detail.innerHTML = `<p>${info}</p>`;
-                document.body.appendChild(detail);
+                container.appendChild(detail); // 改為附加到 container 以便定位
 
                 const rect = node.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                
+                // 相對於 container 定位
                 if (pos.includes('l')) {
-                    detail.style.left = (rect.left - 280) + 'px';
+                    detail.style.left = (rect.left - containerRect.left - 280) + 'px';
                 } else {
-                    detail.style.left = (rect.right + 20) + 'px';
+                    detail.style.left = (rect.right - containerRect.left + 20) + 'px';
                 }
-                detail.style.top = (rect.top - 10) + 'px';
-                node._detail = detail;
+                detail.style.top = (rect.top - containerRect.top - 10) + 'px';
+                
+                // 強制重繪後顯示
+                setTimeout(() => detail.classList.add('show'), 10);
+                node._detailElement = detail;
             });
 
             node.addEventListener('mouseleave', () => {
-                if (node._detail) { node._detail.remove(); node._detail = null; }
-            });
-        });
-
-        window.addEventListener('resize', drawLines);
-        setTimeout(drawLines, 1000); 
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const container = document.querySelector('.map-container');
-        const nodes = document.querySelectorAll('.node');
-        const linesGroup = document.querySelector('.lines-group');
-        const center = document.querySelector('.center-core');
-
-        function drawLines() {
-            linesGroup.innerHTML = '';
-            const containerRect = container.getBoundingClientRect();
-            const cRect = center.getBoundingClientRect();
-            const cx = cRect.left + cRect.width / 2 - containerRect.left;
-            const cy = cRect.top + cRect.height / 2 - containerRect.top;
-
-            nodes.forEach(node => {
-                const nRect = node.getBoundingClientRect();
-                const nx = nRect.left + nRect.width / 2 - containerRect.left;
-                const ny = nRect.top + nRect.height / 2 - containerRect.top;
-
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", cx); line.setAttribute("y1", cy);
-                line.setAttribute("x2", nx); line.setAttribute("y2", ny);
-                line.setAttribute("class", "map-line");
-                linesGroup.appendChild(line);
-            });
-        }
-
-        nodes.forEach(node => {
-            node.addEventListener('mouseenter', () => {
-                const info = node.getAttribute('data-info');
-                const pos = node.getAttribute('data-pos');
-                const detail = document.createElement('div');
-                detail.className = 'detail-pop';
-                detail.innerHTML = `<p>${info}</p>`;
-                document.body.appendChild(detail);
-
-                const rect = node.getBoundingClientRect();
-                // 智能邊界檢查
-                if (pos.includes('l')) {
-                    detail.style.left = (rect.left - 280) + 'px';
-                } else {
-                    detail.style.left = (rect.right + 20) + 'px';
+                if (node._detailElement) {
+                    node._detailElement.classList.remove('show');
+                    // 等待淡出動畫完成後移除
+                    const el = node._detailElement;
+                    setTimeout(() => el.remove(), 200);
+                    node._detailElement = null;
                 }
-                detail.style.top = (rect.top - 10) + 'px';
-                node._detail = detail;
-            });
-
-            node.addEventListener('mouseleave', () => {
-                if (node._detail) { node._detail.remove(); node._detail = null; }
             });
         });
 
